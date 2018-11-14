@@ -13,8 +13,8 @@ import (
 func main() {
 
 	args := os.Args
-	telefone := args[1]
-	mensagem := args[2]
+	phone := args[1]
+	message := args[2]
 
 	//create new WhatsApp connection
 	wac, err := whatsapp.NewConn(5 * time.Second)
@@ -33,9 +33,9 @@ func main() {
 
 	msg := whatsapp.TextMessage{
 		Info: whatsapp.MessageInfo{
-			RemoteJid: telefone + "@s.whatsapp.net",
+			RemoteJid: phone + "@s.whatsapp.net",
 		},
-		Text: "" + mensagem,
+		Text: "" + message,
 	}
 
 	err = wac.Send(msg)
