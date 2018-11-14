@@ -3,13 +3,19 @@ package main
 import (
 	"encoding/gob"
 	"fmt"
-	"github.com/Baozisoftware/qrcode-terminal-go"
-	"github.com/Rhymen/go-whatsapp"
 	"os"
 	"time"
+
+	"github.com/Baozisoftware/qrcode-terminal-go"
+	"github.com/Rhymen/go-whatsapp"
 )
 
 func main() {
+
+	args := os.Args
+	telefone := args[1]
+	mensagem := args[2]
+
 	//create new WhatsApp connection
 	wac, err := whatsapp.NewConn(5 * time.Second)
 	if err != nil {
@@ -27,9 +33,9 @@ func main() {
 
 	msg := whatsapp.TextMessage{
 		Info: whatsapp.MessageInfo{
-			RemoteJid: "number@s.whatsapp.net",
+			RemoteJid: telefone + "@s.whatsapp.net",
 		},
-		Text: "Message sent by github.com/Rhymen/go-whatsapp",
+		Text: "" + mensagem,
 	}
 
 	err = wac.Send(msg)
